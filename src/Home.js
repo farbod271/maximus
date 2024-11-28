@@ -1,4 +1,7 @@
 import { Ambulance, HeartPulse, ShieldEllipsis, Router, Binary, PanelsTopLeft, Bug, BadgeEuro    } from 'lucide-react';
+import Filter from './Filter' 
+import ThreeScene from './ThreeScene';
+import Typing from './Typing'
 
 function Home() {
   return (
@@ -7,7 +10,12 @@ function Home() {
         <div className='view-height'>
 
             <div className='home-block'></div>
-            <div className="bg hidden md:block" style={{ backgroundImage: 'url(dark.jpg)' }}></div>        
+            {/* <div className="bg hidden md:block" style={{ backgroundImage: 'url(dark.jpg)' }}>
+            <ThreeScene/>
+              </div>         */}
+              <div className="bg hidden md:block">
+            <ThreeScene/>
+              </div>   
             <div className='whoami'>
                 <h1 className='text-6xl'>Servus, I'm Farbod</h1>
                 <div className='explainer'>
@@ -17,7 +25,7 @@ function Home() {
                     When not battling bugs, I’m studying cybersecurity.
                     </p>
                     <div className='explainer-images text-center'>
-<img src="https://img.shields.io/badge/django-%23092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django"/>
+{/* <img src="https://img.shields.io/badge/django-%23092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django"/> */}
 <img src="https://img.shields.io/badge/cookiecutter-%23D4AA00?style=for-the-badge&logo=cookiecutter&logoColor=white" alt="Cookiecutter"/>
 <img src="https://img.shields.io/badge/docker-%232496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
 <img src="https://img.shields.io/badge/nginx-%23009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx"/>
@@ -29,7 +37,6 @@ function Home() {
 <img src="https://img.shields.io/badge/node.js-%23339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
 <img src="https://img.shields.io/badge/Express.js%20-white?style=for-the-badge&logo=express&labelColor=%23000000" alt="Express.js"/>
 <img src="https://img.shields.io/badge/mongodb-%2347A248?style=for-the-badge&logo=mongodb&logoColor=white&labelColor=%2347A248" alt="MongoDB"/>
-<img src="https://img.shields.io/badge/css-%231572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
 <img src="https://img.shields.io/badge/telegram-%232496ED?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
 <img src="https://img.shields.io/badge/HTML5-%23E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
 <img src="https://img.shields.io/badge/css-%231572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
@@ -85,7 +92,8 @@ function Home() {
         <Ambulance size={200} className='ambulance' />
         </section>
     </div>
-
+    <Filter/> 
+    <Typing/>
     </>
   )
 }

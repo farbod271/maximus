@@ -21,31 +21,30 @@ body {
 nav {
     height: 55px;
     width: 100%;
-    color: #fff;
+    color: #292929;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #293951;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.729);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(20px);
     overflow: hidden;
+    /* background-color: transparent; */
 }
 
 .nav-item {
     /* margin-right: 20px; */
     padding: 10px;
-    color: #fff;
+    color: #292929;
     font-weight: 300;
     transition: 0.3s;
     display: flex;
     gap: 5px;
     border-radius: 30px;
     align-items: center;
+    /* background-color: transparent; */
 }
 
 .items .nav-item:hover {
-    background-color: #7e9fcf;}
+    background-color: var(--yellow-color);
+}
 
 .header {
     margin-left: 30px;
@@ -80,6 +79,7 @@ nav {
     background: linear-gradient(135deg, var(--yellow-color) 30%, #ffdd57 100%);
     /* border-radius: 26%; */
     z-index: -1;
+    pointer-events: none;
 }
 
 .home-block::before {
@@ -156,7 +156,7 @@ nav {
     top: 80px;
     box-shadow: 0 0 7px rgba(0, 0, 0, .9);
     position: absolute;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .bg::before {
@@ -216,8 +216,39 @@ section p {
     transform: rotate(20deg);
 }
 
+
+.filter-container {
+    width: 60%;
+    margin: 30px auto;
+}
+
+.filter-container img, .filter-container svg {
+    display: inline;
+}
+
+
+.list-items {
+    width: 210px;
+    height: 210px;
+    background-color: #ffb400;
+}
+
+
+.visit {
+    margin: 120px auto;
+}
+
 .hello {
     /* background-color: red; */
     width: 100%;
     height: 300px;
 }
+
+.inner-type {
+    border: #e5e7eb solid 3px;
+    padding: 25px 30px;
+    border-radius: 50px;
+    color: rgb(234, 234, 234);
+    background-color: #303d51;
+    font-family: Fira Code VF, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  }
