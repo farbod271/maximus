@@ -17,10 +17,10 @@ const inputRef = useRef(null)
 
 
 const handleKeyUp = (e) => {
-  console.log(e)
+  console.log(e.key)
 const newStatuses = [...letterStatuses];
 const expectLetter = words[currentIndex]
-const currentLetter = e
+const currentLetter = e.key
 
 if (expectLetter === currentLetter && letterStatuses[currentIndex] !== 'incorrect') {
     newStatuses[currentIndex] = 'correct'
@@ -94,7 +94,7 @@ const handleFocus = () => {
 
 <input type='text'
 ref={inputRef}
-onChange={(e)=>handleKeyUp( e.nativeEvent.data)}
+onKeyUpCapture={(e)=>handleKeyUp(e)}
 onBlur={handleFocus}
 className='block'
 placeholder='hello'
@@ -102,6 +102,7 @@ placeholder='hello'
 
 </input>
 
+{words[currentIndex]}
 
 </div>
 )
