@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './styles.css'
 import { Github, Hash  } from 'lucide-react';
 import { tagToSvgMap } from './svgs';
@@ -8,53 +8,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function Filter() {
 
-  const RandomId = () => {
-    return Math.floor(Math.random() * 1000000);
+
+const [selectedTags, setSelectedTags] = useState([]);
+const [projects, setProjects] = useState([]);
+
+useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch('https://workers-playground-divine-lab-7d95.farodmatin.workers.dev/api');
+      const data = await response.json();
+      setProjects(data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
   };
 
-  const projects = [
-    {
-      key: RandomId(),
-      title: 'Deggenhub',
-      content: "this is a passion project that tried to connect the lovely people of Deggendorf",
-      tags: ['cookiecutter', 'django', 'docker', 'nginx', 'redis', 'javascript', 'postgres', 'git', 'linux', 'html5', 'css', 'bootstrap'],
-      github: 'https://github.com/farbod271/Deggenhub',
-      demo: 'https://deggenhub.de'
-    },
-    {
-      key: RandomId(),
-      title: 'Liebess',
-      content: "A demo prject made for a restaurant but its not a production ready project!",
-      tags: ['nodejs', 'express', 'mongodb', 'nginx', 'html5', 'css', 'bootstrap'],
-      github: 'https://github.com/farbod271/liebess',
-      demo: '#'
-    },
-    {
-      key: RandomId(),
-      title: 'ERL checker bot',
-      content: "A bot that checks availability of ERL apartments. this has no affiliation with ERL",
-      tags: ['telegram', 'linux', 'git'],
-      github: 'https://github.com/farbod271/ERL',
-      demo: 'https://t.me/erlcheckerbot'
-    },
-    {
-      key: RandomId(),
-      title: 'Typing app',
-      content: "A simple clone of keybr.com",
-      tags: ['nodejs', 'express','web', 'html5', 'css', 'bootstrap'],
-      github: '#',
-      demo: '#'
-    },
-    {
-      key: RandomId(),
-      title: 'Blog app',
-      content: "The Blog app in this portfolio",
-      tags: ['nodejs', 'express','web', 'mongodb', 'nginx', 'html5', 'css', 'bootstrap'],
-      github: '#',
-      demo: '#'
-    }
-  ];
-const [selectedTags, setSelectedTags] = useState([]);
+  fetchProjects();
+}, []);
+
 
 
 
@@ -141,7 +112,11 @@ const ProjectCard = ({ project }) => {
   
 
   return(
-      <div key={project.key} className=' list-items my-6 rounded-3xl text-center flex-shrink-0 border-slate-600 relative'>
+      <div key={project.key} className=' list-items my-6 rounded-3xl text-center flex-shrink-0 border-slate-600 relative'
+      style={{ backgroundImage: project.backgroundImage, backgroundSize: 'cover', backgroundPosition: 'center',
+      }}
+
+      >
               <AnimatePresence>
         {activeView && (
           <motion.div
@@ -154,7 +129,6 @@ const ProjectCard = ({ project }) => {
               bottom: activeView === 'tags' ? '1rem' : 'auto',
               right: activeView === 'info' ? '1rem' : 'auto',
               left: activeView === 'tags' ? '1rem' : 'auto',
-              borderRadius: '1.5rem',
               position: 'absolute',
             }}
             animate={{ 
@@ -188,7 +162,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div className='relative'>
-<div className='filter-container text-center'>
+<div className='filter-container w-full text-center'>
 <div className="flex gap-2 justify-center">
       </div>
     <div className='mb-3'>

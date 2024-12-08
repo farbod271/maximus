@@ -6,9 +6,6 @@ import Markdown from 'react-markdown'
 function PostDetail({blogPosts}) {
 
 
-    const markdown = '`Inline code`'
-
-
     const { id } = useParams();
     const post = blogPosts.find(post => post.id === parseInt(id));
   

@@ -1,4 +1,4 @@
-import { Ambulance, HeartPulse, ShieldEllipsis, Router, Binary, PanelsTopLeft, Bug, BadgeEuro, Zap    } from 'lucide-react';
+import { Ambulance, HeartPulse, ShieldEllipsis, Router, Binary, PanelsTopLeft, Bug, BadgeEuro } from 'lucide-react';
 import Filter from './Filter' 
 import ThreeScene from './ThreeScene';
 import Typing from './Typing'
@@ -6,7 +6,7 @@ import { tagToSvgMap } from './svgs';
 import { Rss, Presentation   } from 'lucide-react';
 import {Link} from "react-router-dom";
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 
 
@@ -14,6 +14,30 @@ import { useEffect, useState } from 'react';
 
 function Home() {
 
+
+  useEffect(() => {
+    const checkViewportHeight = () => {
+      const explainerImages = document.querySelectorAll('.explainer-images');
+      const viewHeightDiv = document.querySelector('.view-height');
+      if (window.innerHeight < 900) {
+        explainerImages.forEach((element) => {
+          element.classList.add('hidden');
+        });
+      } else {
+        viewHeightDiv.classList.remove('h-110vh');
+        explainerImages.forEach((element) => {
+          element.classList.remove('hidden');
+        });
+      }
+    };
+
+    checkViewportHeight();
+    window.addEventListener('resize', checkViewportHeight);
+
+    return () => {
+      window.removeEventListener('resize', checkViewportHeight);
+    };
+  }, []);
 
 const divVariants = {
   initial: {
@@ -108,7 +132,7 @@ const redVariants = {
   return (
     <>
     <div className="home">
-        <div className='view-height sm:w-full'>
+        <div className='view-height h-110vh md:h-100vh sm:w-full'>
 
             <motion.div className='home-block'
             variants={divVariants}
@@ -121,7 +145,7 @@ const redVariants = {
               animate="animate"
               ></motion.div>
             </motion.div>      
-              <div className="bg hidden sm:block">
+              <div className="bg hidden md:block">
             <ThreeScene/>
               </div>   
             <motion.div className='whoami sm:w-full md:w-1/2'
@@ -129,14 +153,19 @@ const redVariants = {
             initial="hidden"
             animate="visible"
             >
-                <motion.h1 className='text-6xl' variants={cardVariants}>Servus, I'm Farbod</motion.h1>
+                <motion.h1 className='text-5xl md:text-6xl' variants={cardVariants}>Servus, I'm Farbod</motion.h1>
+                <div className="w-full flex justify-center teste-con mt-5">
+                  <div className="teste md:hidden">
+                  <ThreeScene/>
+                  </div>
+                </div>  
                 <div className='explainer'>
-                    <motion.p className='lg:text-3xl text-2xl sm:mt-16 mt-20 text-center' variants={cardVariants}>
+                    <motion.p className='lg:text-3xl text-xl md:mt-16 mt-2 text-center' variants={cardVariants}>
                     Code whisperer and hunter of bugs!
                     wields Django like a knight’s sword and React like a magic wand. 
                     When not battling bugs, I’m studying cybersecurity.
                     </motion.p>
-                    <motion.div className='explainer-images text-center' variants={cardVariants}>
+                    <motion.div className='explainer-images md:block text-center' variants={cardVariants}>
                       <div className="all-svgs">
                         {Object.keys(tagToSvgMap).map((tag) => {
                           const SvgComponent = tagToSvgMap[tag];
@@ -144,7 +173,9 @@ const redVariants = {
                           className='inline cursor-pointer'/>;
                         })}
                       </div>
-                    <div className='flex justify-center gap-7 mt-5'>
+
+                    </motion.div>
+                    <motion.div className='flex justify-center gap-7 mt-5' variants={cardVariants}>
                     <div className='flex blog-btn gap-1 items-center text-xl rounded-sm text-slate-950 p-2'>
                       <div className='blog-btn-a'>
                       <Link to='/posts' className='flex items-center gap-1'>
@@ -159,7 +190,6 @@ const redVariants = {
                         </Link>
                         </div>
                     </div>
-                    </div>
                     </motion.div>
                 </div>
             </motion.div>
@@ -167,7 +197,6 @@ const redVariants = {
         <section className='intro-section relative bg-slate-900'>
           <motion.div 
           animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-
           transition={{
           duration: 5,
           repeat: Infinity, 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { use } from 'react';
 import { useState, useRef, useEffect } from "react";
 
 function Typing() {
