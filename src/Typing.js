@@ -11,9 +11,9 @@ const [letterStatuses, setLetterStatuses] = useState([])
 const [isFocused, setIsFocused] = useState(false);
 const inputRef = useRef(null)
 
-if (inputRef.current) {
-    inputRef.current.value = ''
-}
+// if (inputRef.current) {
+//     inputRef.current.value = ''
+// }
 
 
 const handleKeyUp = (e) => {

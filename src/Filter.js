@@ -192,7 +192,7 @@ const ProjectCard = ({ project }) => {
       </div>
     </div>
 
-    <div id='hello' className='item-container sm:justify-normal md:justify-center flex gap-4'>
+    <div id='hello' className='item-container pl-4 sm:justify-normal md:justify-center flex gap-4'>
       {filteredProjects.map((project) => (
         <ProjectCard key={project.key} project={project} />
       ))}  
