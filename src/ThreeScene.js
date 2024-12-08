@@ -1,55 +1,55 @@
-import React, { useRef, useEffect } from 'react';
+import React, { Suspense, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
 
-const Scene = () => {
-  const lightRef = useRef();
-  const { scene } = useGLTF('untitled2.glb');
-  // const scene = useThree((state) => state.scene);
 
-  const camera = useThree((state) => state.camera);
+function Model() {
+  const { scene } = useGLTF('avatar.glb');
+  return <primitive object={scene} />;
+}
 
-  useEffect(() => {
-    // Add CameraHelper
-    const cameraHelper = new THREE.CameraHelper(camera);
-    scene.add(cameraHelper);
 
-    // Add PointLightHelper
-    const pointLightHelper = new THREE.PointLightHelper(lightRef.current, 5);
-    scene.add(pointLightHelper);
 
-    return () => {
-      scene.remove(cameraHelper);
-      scene.remove(pointLightHelper);
-    };
-  }, [camera, scene]);
+function ThreeScene() {
+  const [isInteracted, setIsInteracted] = useState(false);
 
-  useFrame(({ mouse, camera }) => {
-    const vector = new THREE.Vector3(mouse.x, mouse.y, 0.5).unproject(camera);
-    const dir = vector.sub(camera.position).normalize();
-    const distance = -camera.position.z / dir.z;
-    const pos = camera.position.clone().add(dir.multiplyScalar(distance));
-    lightRef.current.position.copy(new THREE.Vector3(pos.x, pos.y, pos.z + 2));
-  });
+  const handleTouched = () => {
+    setIsInteracted(true);
+  }
 
+  function CameraController() {
+    const { camera } = useThree();
+    const ref = useRef(0);
+  
+
+  
+    useFrame(() => {
+      if (!isInteracted) {
+        ref.current += 0.004; // Adjust the speed of rotation here
+        camera.position.x = -1.1 + Math.sin(ref.current) * 2;
+        // camera.position.z = Math.cos(ref.current) * 2;
+        // camera.lookAt(0, 1.6, 0);
+      }
+    });
+  
+    return null;
+    
+    
+  
+  }
   return (
-    <>
-      <ambientLight intensity={1} />
-      <pointLight ref={lightRef} intensity={1} distance={150} position={[1, 20, 30]} />
-      <primitive object={scene} scale={[10, 10, 10]} />
-      <OrbitControls minDistance={2} maxDistance={10} target={[0, 0, -0.2]} />
-    </>
-  );
-};
-
-const ThreeScene = () => {
-  return (
-    <Canvas style={{ width: '100%', height: '100%' }} camera={{ position: [2 , 0, 40], fov: 75 }}>
-      <ambientLight intensity={10} /> 
-      <Scene />
+    <Canvas camera={{ position: [-1.1, 1.3, 2], fov: 15 }}>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 10, 5]} intensity={2} />
+      <directionalLight position={[-10, 10, 5]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      <Suspense fallback={null}>
+        <Model />
+      </Suspense>
+      <OrbitControls target={[0, 1.6, 0]} onStart={handleTouched}/>
+      <CameraController />
     </Canvas>
   );
-};
+}
 
 export default ThreeScene;

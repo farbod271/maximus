@@ -14,18 +14,23 @@ import { ReactComponent as Telegram } from './icons/telegram.svg';
 import { ReactComponent as Html5 } from './icons/HTML5.svg';
 import { ReactComponent as Css } from './icons/css.svg';
 import { ReactComponent as Bootstrap } from './icons/bootstrap.svg';
+import { ReactComponent as React } from './icons/ReactJs.svg';
+import { ReactComponent as Python } from './icons/python.svg';
+
 
 export const tagToSvgMap = {
+    react: React,
     django: Django,
-    cookiecutter: Cookiecutter,
+    python: Python,
+    nodejs: Nodejs,
     docker: Docker,
     nginx: Nginx,
     redis: Redis,
     javascript: JavaScript,
+    cookiecutter: Cookiecutter,
     postgres: Postgres,
     git: Git,
     linux: Linux,
-    nodejs: Nodejs,
     express: Express,
     mongodb: Mongodb,
     telegram: Telegram,

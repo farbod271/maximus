@@ -1,95 +1,282 @@
-import { Ambulance, HeartPulse, ShieldEllipsis, Router, Binary, PanelsTopLeft, Bug, BadgeEuro    } from 'lucide-react';
+import { Ambulance, HeartPulse, ShieldEllipsis, Router, Binary, PanelsTopLeft, Bug, BadgeEuro, Zap    } from 'lucide-react';
 import Filter from './Filter' 
 import ThreeScene from './ThreeScene';
 import Typing from './Typing'
+import { tagToSvgMap } from './svgs';
+import { Rss, Presentation   } from 'lucide-react';
+import {Link} from "react-router-dom";
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+
+
+
 
 function Home() {
+
+
+const divVariants = {
+  initial: {
+    y: '-70px',
+    x: '-270px',
+  opacity: 0,
+  rotate: '15deg',
+},
+  animate: { 
+    x: 0,
+    y: 0,
+    opacity: 1,
+    transition: { 
+      duration: 1,
+      ease: "easeOut"
+    }
+  }
+};
+
+const redVariants = {
+  initial: {
+    x: '500px',
+  opacity: 0,
+},
+  animate: { 
+    x: 0,
+    y: 0,
+    opacity: 1,
+    transition: { 
+      duration: 1,
+      ease: "easeOut"
+    }
+  }
+}
+
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3, 
+        staggerChildren: 0.5 
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          entry.target.querySelectorAll('div').forEach((div) => {
+            div.classList.add('invisible');
+          });             
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('div').forEach((div) => {
+              div.classList.remove('invisible');
+              div.classList.add('fade-in-up');
+            });            
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.5
+      }
+    );
+
+    const cardElements = document.querySelectorAll('.intro-section');
+    cardElements.forEach(card => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
+
   return (
     <>
     <div className="home">
-        <div className='view-height'>
+        <div className='view-height sm:w-full'>
 
-            <div className='home-block'></div>
-            {/* <div className="bg hidden md:block" style={{ backgroundImage: 'url(dark.jpg)' }}>
-            <ThreeScene/>
-              </div>         */}
-              <div className="bg hidden md:block">
+            <motion.div className='home-block'
+            variants={divVariants}
+            initial="initial"
+            animate="animate"
+            >
+              <motion.div className='home-block-red'
+              variants={redVariants}
+              initial="initial"
+              animate="animate"
+              ></motion.div>
+            </motion.div>      
+              <div className="bg hidden sm:block">
             <ThreeScene/>
               </div>   
-            <div className='whoami'>
-                <h1 className='text-6xl'>Servus, I'm Farbod</h1>
+            <motion.div className='whoami sm:w-full md:w-1/2'
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            >
+                <motion.h1 className='text-6xl' variants={cardVariants}>Servus, I'm Farbod</motion.h1>
                 <div className='explainer'>
-                    <p className='text-3xl text-center'>
+                    <motion.p className='lg:text-3xl text-2xl sm:mt-16 mt-20 text-center' variants={cardVariants}>
                     Code whisperer and hunter of bugs!
                     wields Django like a knight’s sword and React like a magic wand. 
                     When not battling bugs, I’m studying cybersecurity.
-                    </p>
-                    <div className='explainer-images text-center'>
-{/* <img src="https://img.shields.io/badge/django-%23092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django"/> */}
-<img src="https://img.shields.io/badge/cookiecutter-%23D4AA00?style=for-the-badge&logo=cookiecutter&logoColor=white" alt="Cookiecutter"/>
-<img src="https://img.shields.io/badge/docker-%232496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-<img src="https://img.shields.io/badge/nginx-%23009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx"/>
-<img src="https://img.shields.io/badge/redis-%23DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis"/>
-<img src="https://img.shields.io/badge/javascript-%23F7DF1E?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/>
-<img src="https://img.shields.io/badge/Postgres-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-<img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
-<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"/>
-<img src="https://img.shields.io/badge/node.js-%23339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
-<img src="https://img.shields.io/badge/Express.js%20-white?style=for-the-badge&logo=express&labelColor=%23000000" alt="Express.js"/>
-<img src="https://img.shields.io/badge/mongodb-%2347A248?style=for-the-badge&logo=mongodb&logoColor=white&labelColor=%2347A248" alt="MongoDB"/>
-<img src="https://img.shields.io/badge/telegram-%232496ED?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
-<img src="https://img.shields.io/badge/HTML5-%23E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
-<img src="https://img.shields.io/badge/css-%231572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
-<img src="https://img.shields.io/badge/Bootstrap-%237952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap"/>
+                    </motion.p>
+                    <motion.div className='explainer-images text-center' variants={cardVariants}>
+                      <div className="all-svgs">
+                        {Object.keys(tagToSvgMap).map((tag) => {
+                          const SvgComponent = tagToSvgMap[tag];
+                          return <SvgComponent key={tag} 
+                          className='inline cursor-pointer'/>;
+                        })}
+                      </div>
+                    <div className='flex justify-center gap-7 mt-5'>
+                    <div className='flex blog-btn gap-1 items-center text-xl rounded-sm text-slate-950 p-2'>
+                      <div className='blog-btn-a'>
+                      <Link to='/posts' className='flex items-center gap-1'>
+                      <Rss size={16} />Blog
+                      </Link>
+                      </div>
                     </div>
+                    <div className='flex gap-1 blog-btn items-center text-xl rounded-sm text-white p-2'>
+                        <div className='blog-btn-a'>
+                        <Link to='/projects' className='flex items-center gap-1'>
+                        <Presentation size={16} />Portfolio
+                        </Link>
+                        </div>
+                    </div>
+                    </div>
+                    </motion.div>
                 </div>
-            </div>
+            </motion.div>
         </div>
-        <section className='intro-section bg-slate-900'>
-        <Binary size={200} className='rotate-45' />
+        <section className='intro-section relative bg-slate-900'>
+          <motion.div 
+          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut",
+      }}>
+            <Binary size={200} className='rotate-45 text-slate-800 absolute left-2 -top-20' />
+          </motion.div>
         <div className='middle-of-section'>
         <h1>Freelance Web Developer</h1>
-          <p>I'm a Full-stack developer.<br/> I'm most comfortable using django for the backend and vanilla javascript for the frontend.<br/>
+          <p className='sm:w-full'>I'm a Full-stack developer.<br/> I'm most comfortable using django for the backend and vanilla javascript for the frontend.<br/>
              if extensive frontend work is required, React and the MERN stack is my go-to.
-             in conjuction with thses I employ docker, MongoDB, PostgreSQL, Nginx and Redis to build scalable and secure applications.
              </p>
         </div>
-        <PanelsTopLeft size={200} className='-rotate-45'/>
+        <motion.div 
+          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut",
+      }}>
+        <PanelsTopLeft size={200} className='-rotate-45 text-slate-800 absolute right-2 -top-20'/>
+          </motion.div>
 
         </section>
         <section className='intro-section bg-gray-800'>
-        <ShieldEllipsis size={200} className='-rotate-45'/>
+        <motion.div 
+          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut", 
+      }}>
+        <ShieldEllipsis size={200} className='-rotate-45  text-slate-900 absolute left-2 -top-20'/>
+          </motion.div>
         <div className='middle-of-section'>
         <h1>Cybersecurity Student</h1>
           <p>I’m studyig Cybersecurity currently<br/>
-              learning about web application penetration testing, network security, cryptography, and digital forensics. <br/>
-              I’m also studying for the CompTIA Security+ certification. <br/>
-              looking to get into the cybersecurity field as a penetration tester or security analyst.
+              learning about web app pentesting, network security, cryptography, and digital forensics. <br/>
+              looking to get into the cybersecurity field as a pentester or security analyst.
           </p>
         </div>
-        <Router size={200} className='rotate-45 -translate-y-10' />
+        <motion.div 
+          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut", 
+      }}>
+        <Router size={200} className='rotate-45 -translate-y-10 text-slate-900 absolute right-2 -top-20' />
+          </motion.div>
 
         </section>
         <section className='intro-section test bg-yellow-500'>
-        <Bug size={200} className='rotate-45' />
+        <motion.div 
+          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut", 
+      }}>
+        <Bug size={200} className='rotate-45  text-yellow-400 absolute left-2 -top-20' />
+          </motion.div>
         <div className='middle-of-section'>
           <h1>Bug Bounty Hunter</h1>
-          <p>I particupate in public bug bounty programms in hackerone and integriti
+          <p>I participate in public bug bounty programms in hackerone and integriti
             still a beginner but my passion for cybersecurity and my experience as a developer keeps me going.
           </p>
         </div>
-        <BadgeEuro size={200} className='-rotate-45' />
+        <motion.div 
+          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut", 
+      }}>
+        <BadgeEuro size={200} className='-rotate-45 absolute text-yellow-400 right-2 -top-20' />
+          </motion.div>
         </section>
         <section className='intro-section bg-sky-900'>
-        <HeartPulse size={200} className='-rotate-45'/>
+        <motion.div 
+          animate={{ y: [0, -4, 0], x: [0, 4, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut", 
+      }}>
+        <HeartPulse size={200} className='-rotate-45  text-sky-800 absolute left-2 -top-20'/>
+          </motion.div>
         <div className='middle-of-section'>
         <h1>Former Occupational Therapist!</h1>
-          <p>interesingly I'm a licensed Ergotherapist having had experience in many collabrative contexts.  <br/>
-            my patients ranged from children with autism to elderly with dementia. <br/>
+          <p>interesingly I'm a licensed Ergotherapist having had experience patients ranging from children with autism to elderly with dementia. <br/>
             I have worked in ICU, CCU and other hospital settings, schools, and private clinics.
           </p>
         </div>
-        <Ambulance size={200} className='ambulance' />
+        <motion.div 
+          animate={{ y: [0, -4, 0], x: [0, 4, 0] }}
+
+          transition={{
+          duration: 5,
+          repeat: Infinity, 
+          ease: "easeInOut", 
+      }}>
+        <Ambulance size={200} className='ambulance absolute text-sky-800 right-2 -top-20' />
+          </motion.div>
         </section>
     </div>
     <Filter/> 
