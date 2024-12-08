@@ -17,14 +17,13 @@ const inputRef = useRef(null)
 
 
 const handleKeyUp = (e) => {
+  console.log(e)
 const newStatuses = [...letterStatuses];
 const expectLetter = words[currentIndex]
-const currentLetter = e.key
+const currentLetter = e
 
 if (expectLetter === currentLetter && letterStatuses[currentIndex] !== 'incorrect') {
     newStatuses[currentIndex] = 'correct'
-    console.log(currentIndex)
-    console.log(newStatuses)
     setCurrentIndex(currentIndex + 1)
 }
 
@@ -33,8 +32,7 @@ else if (expectLetter === currentLetter && letterStatuses[currentIndex] === 'inc
 }
 else if (expectLetter !== currentLetter) {
     newStatuses[currentIndex] = 'incorrect'
-    console.log('incorrect')
-    console.log(newStatuses)
+
 
 }
 setLetterStatuses(newStatuses)
@@ -96,7 +94,7 @@ const handleFocus = () => {
 
 <input type='text'
 ref={inputRef}
-onKeyUp={handleKeyUp}
+onChange={(e)=>handleKeyUp( e.nativeEvent.data)}
 onBlur={handleFocus}
 className='block'
 placeholder='hello'
