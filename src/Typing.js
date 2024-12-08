@@ -94,7 +94,7 @@ const handleFocus = () => {
 
 <input type='text'
 ref={inputRef}
-onKeyUpCapture={(e)=>handleKeyUp(e)}
+onKeyDown={(e)=>handleKeyUp(e)}
 onBlur={handleFocus}
 className='block'
 placeholder='hello'
