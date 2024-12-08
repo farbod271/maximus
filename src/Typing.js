@@ -98,7 +98,7 @@ const handleFocus = () => {
 ref={inputRef}
 onKeyUp={handleKeyUp}
 onBlur={handleFocus}
-className='block w-0'
+className='block'
 placeholder='hello'
 >
 
