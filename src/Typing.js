@@ -15,12 +15,17 @@ const inputRef = useRef(null)
 //     inputRef.current.value = ''
 // }
 
+// const inputValue = inputRef.current.value;
+// var lastChar = inputValue[inputValue.length - 1];
 
 const handleKeyUp = (e) => {
-  console.log(e.key)
+const inputValue = inputRef.current.value;
+const lastChar = inputValue[inputValue.length - 1];
+
 const newStatuses = [...letterStatuses];
 const expectLetter = words[currentIndex]
-const currentLetter = e.key
+
+const currentLetter = lastChar
 
 if (expectLetter === currentLetter && letterStatuses[currentIndex] !== 'incorrect') {
     newStatuses[currentIndex] = 'correct'
@@ -93,11 +98,13 @@ const handleFocus = () => {
 
 
 <input type='text'
+id='myInput'
 ref={inputRef}
-onKeyDown={(e)=>handleKeyUp(e)}
+onChange={handleKeyUp}
 onBlur={handleFocus}
 className='block'
 placeholder='hello'
+autoCapitalize='none'
 >
 
 </input>
