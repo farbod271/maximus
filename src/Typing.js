@@ -15,9 +15,6 @@ const inputRef = useRef(null)
 //     inputRef.current.value = ''
 // }
 
-// const inputValue = inputRef.current.value;
-// var lastChar = inputValue[inputValue.length - 1];
-
 const handleKeyUp = (e) => {
 const inputValue = inputRef.current.value;
 const lastChar = inputValue[inputValue.length - 1];
@@ -98,18 +95,15 @@ const handleFocus = () => {
 
 
 <input type='text'
-id='myInput'
 ref={inputRef}
 onChange={handleKeyUp}
 onBlur={handleFocus}
-className='block'
+className='block w-0'
 placeholder='hello'
 autoCapitalize='none'
 >
 
 </input>
-
-{words[currentIndex]}
 
 </div>
 )
