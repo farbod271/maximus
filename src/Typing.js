@@ -18,7 +18,7 @@ const inputRef = useRef(null)
 const handleKeyUp = (e) => {
 const inputValue = inputRef.current.value;
 const lastChar = inputValue[inputValue.length - 1];
-
+console.log(inputValue)
 const newStatuses = [...letterStatuses];
 const expectLetter = words[currentIndex]
 
@@ -98,12 +98,14 @@ const handleFocus = () => {
 ref={inputRef}
 onChange={handleKeyUp}
 onBlur={handleFocus}
-className='block w-0'
+className='block opacity-0'
 placeholder='hello'
 autoCapitalize='none'
 >
 
 </input>
+
+{words[currentIndex]}
 
 </div>
 )
