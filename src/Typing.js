@@ -105,8 +105,6 @@ autoCapitalize='none'
 
 </input>
 
-{words[currentIndex]}
-
 </div>
 )
 }
