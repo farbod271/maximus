@@ -62,7 +62,7 @@ nav {
 }
 
 .header {
-    margin-left: 30px;
+    margin-left: 5%;
     font-weight: 800;
 
 }
@@ -207,7 +207,7 @@ body.dark .blog-btn-a {
 
 .intro-section {
     width: 100%;
-    height: 250px;
+    height: fit-content;
 }
 
 
@@ -225,21 +225,24 @@ section h1 {
     border-bottom: #fdf4e4 solid 2px;
     width: fit-content;
     height: fit-content;
-    margin: 10px;
+    /* margin: 8px; */
     font-weight: 800;
+    margin: 6px auto;
 }
 
 .middle-of-section  {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
+    text-align: center;
     width: clamp(100%, 540px, 540px);
     z-index: 100;
+    height: 100%;
 }
 
 section p {
     /* width: clamp(100%, 5vw - 70%, 100%);     */
-    padding: 0 20px;
+    padding: 18px 20px;
     font-size: large;
     font-weight: 500;
 }
@@ -281,7 +284,6 @@ section p {
 }
 
 .hello {
-    /* background-color: red; */
     width: 100%;
     height: 300px;
 }
@@ -303,8 +305,6 @@ section p {
     background-color: #293951;
   }
   .blog-cont {
-    border-radius: 20px;
-    /* background-color: #293951; */
     color: #131313;
     margin: 0 auto;
   }
@@ -313,10 +313,7 @@ section p {
     background-color: #293951;
     color: #ddd;
   }
-
-
   
-
   @keyframes fadeInUp {
     from {
       opacity: 0;

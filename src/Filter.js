@@ -15,7 +15,7 @@ const [projects, setProjects] = useState([]);
 useEffect(() => {
   const fetchProjects = async () => {
     try {
-      const response = await fetch('https://workers-playground-divine-lab-7d95.farodmatin.workers.dev/api');
+      const response = await fetch('https://worker.farbod.eu/projects');
       const data = await response.json();
       setProjects(data);
     } catch (error) {

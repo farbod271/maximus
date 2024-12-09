@@ -194,118 +194,64 @@ const redVariants = {
                 </div>
             </motion.div>
         </div>
-        <section className='intro-section relative bg-slate-900'>
-          <motion.div 
-          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut",
-      }}>
+        <section className='intro-section relative sm:h-250 bg-slate-900'>
+          <div>
             <Binary size={200} className='rotate-45 text-slate-800 absolute left-2 -top-20' />
-          </motion.div>
-        <div className='middle-of-section'>
+          </div>
+        <div className='middle-of-section sm:flex sm:flex-col justify-center '>
         <h1>Freelance Web Developer</h1>
           <p className='sm:w-full'>I'm a Full-stack developer.<br/> I'm most comfortable using django for the backend and vanilla javascript for the frontend.<br/>
              if extensive frontend work is required, React and the MERN stack is my go-to.
              </p>
         </div>
-        <motion.div 
-          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut",
-      }}>
+        <div>
         <PanelsTopLeft size={200} className='-rotate-45 text-slate-800 absolute right-2 -top-20'/>
-          </motion.div>
+          </div>
 
         </section>
-        <section className='intro-section bg-gray-800'>
-        <motion.div 
-          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut", 
-      }}>
+        <section className='intro-section sm:h-250 bg-gray-800'>
+        <div>
         <ShieldEllipsis size={200} className='-rotate-45  text-slate-900 absolute left-2 -top-20'/>
-          </motion.div>
-        <div className='middle-of-section'>
+          </div>
+        <div className='middle-of-section sm:flex sm:flex-col justify-center '>
         <h1>Cybersecurity Student</h1>
           <p>I’m studyig Cybersecurity currently<br/>
               learning about web app pentesting, network security, cryptography, and digital forensics. <br/>
               looking to get into the cybersecurity field as a pentester or security analyst.
           </p>
         </div>
-        <motion.div 
-          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut", 
-      }}>
+        <div>
         <Router size={200} className='rotate-45 -translate-y-10 text-slate-900 absolute right-2 -top-20' />
-          </motion.div>
+          </div>
 
         </section>
-        <section className='intro-section test bg-yellow-500'>
-        <motion.div 
-          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut", 
-      }}>
-        <Bug size={200} className='rotate-45  text-yellow-400 absolute left-2 -top-20' />
-          </motion.div>
-        <div className='middle-of-section'>
+        <section className='intro-section sm:h-250 bg-yellow-500'>
+        <div>
+        <Bug size={200} className='rotate-45  text-yellow-600 absolute left-2 -top-20' />
+          </div>
+        <div className='middle-of-section sm:flex sm:flex-col justify-center '>
           <h1>Bug Bounty Hunter</h1>
-          <p>I participate in public bug bounty programms in hackerone and integriti
+          <p>I participate in public bug bounty programms in hackerone and integriti. <br/>
             still a beginner but my passion for cybersecurity and my experience as a developer keeps me going.
           </p>
         </div>
-        <motion.div 
-          animate={{ y: [0, -5, 0], x: [0, 5, 0] }}
-
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut", 
-      }}>
-        <BadgeEuro size={200} className='-rotate-45 absolute text-yellow-400 right-2 -top-20' />
-          </motion.div>
+        <div>
+        <BadgeEuro size={200} className='-rotate-45 absolute text-yellow-600 right-2 -top-20' />
+          </div>
         </section>
-        <section className='intro-section bg-sky-900'>
-        <motion.div 
-          animate={{ y: [0, -4, 0], x: [0, 4, 0] }}
-
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut", 
-      }}>
+        <section className='intro-section sm:h-250 bg-sky-900'>
+        <div>
         <HeartPulse size={200} className='-rotate-45  text-sky-800 absolute left-2 -top-20'/>
-          </motion.div>
-        <div className='middle-of-section'>
-        <h1>Former Occupational Therapist!</h1>
-          <p>interesingly I'm a licensed Ergotherapist having had experience patients ranging from children with autism to elderly with dementia. <br/>
+          </div>
+        <div className='middle-of-section sm:flex sm:flex-col justify-center '>
+        <h1>Former Ergotherapist!</h1>
+          <p>interesingly I'm a licensed Ergotherapist having had experience with patients ranging from children with autism to elderly with dementia. <br/>
             I have worked in ICU, CCU and other hospital settings, schools, and private clinics.
           </p>
         </div>
-        <motion.div 
-          animate={{ y: [0, -4, 0], x: [0, 4, 0] }}
-
-          transition={{
-          duration: 5,
-          repeat: Infinity, 
-          ease: "easeInOut", 
-      }}>
+        <div>
         <Ambulance size={200} className='ambulance absolute text-sky-800 right-2 -top-20' />
-          </motion.div>
+          </div>
         </section>
     </div>
     <Filter/> 

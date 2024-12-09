@@ -13,6 +13,7 @@ module.exports = {
         'blog': '900px',
       },
       height: {
+        '250': '250px',
         '100vh': '100vh',
         '110vh': '110vh',
         '120vh': '120vh',

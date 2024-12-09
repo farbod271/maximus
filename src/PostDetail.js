@@ -14,8 +14,8 @@ function PostDetail({blogPosts}) {
     }
 
     return (
-        <div className='pt-14 ' key={post.id}>
-        <div class="blog-cont overflow-hidden shadow-lg w-full lg:w-5/6">
+        <div className='pt-14' key={post.id}>
+        <div class="blog-cont border-gray-400 border rounded-br-custom-50 rounded-tl-custom-50 max-w-80 lg:max-w-5xl overflow-hidden w-full lg:w-5/6">
   <img class="w-full object-cover h-auto max-h-96" src="/assets/982990.jpg" alt="Sunset in the mountains"/>
   <div class="px-6 pt-4 pb-2">
     {post.tags.map((tag) => (
